@@ -1,0 +1,50 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+default_platform :ios
+
+$scheme = "ExampleApp"
+$project = 'ExampleApp/ExampleApp.xcodeproj'
+
+before_all do |lane, options|
+    sh 'mkdir ../reports || true'
+end
+
+desc "Does a static analysis of the project. Configure the options in .swiftlint.yml"
+lane :lint do
+	swiftlint(
+		mode: :lint,
+		output_file: 'reports/swiftlint.txt',
+ 		config_file: '.swiftlint.yml'
+	)
+end
+
+desc "Runs all the unit tests and UI Tests"
+lane :test do
+	# Run tests
+	test_args = {
+        project: $project,
+		scheme: $scheme,
+		clean: true,
+		code_coverage: true,
+		output_types: "html",
+		output_directory: "reports"
+	}
+
+	scan(test_args)
+end
+
+desc "Generate Documentation using jazzy"
+lane :doc do
+	# Generate Doc
+    jazzy
+end
