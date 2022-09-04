@@ -1,1 +1,9 @@
-ExampleApp/.DS_Store
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+DerivedData/
+.netrc
+fastlane/report.xml
+.swiftpm
