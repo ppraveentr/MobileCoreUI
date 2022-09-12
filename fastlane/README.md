@@ -29,13 +29,21 @@ Does a static analysis of the project. Configure the options in .swiftlint.yml
 
 Runs all the unit tests and UI Tests
 
-### doc
+### generate_doc
 
 ```sh
-[bundle exec] fastlane doc
+[bundle exec] fastlane generate_doc
 ```
 
 Generate Documentation using jazzy
+
+### reports
+
+```sh
+[bundle exec] fastlane reports
+```
+
+Build, Test and Generate Doc
 
 ----
 

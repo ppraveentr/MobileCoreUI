@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import Theme
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text("Empty!")
+                .setThemeStyle("")
+            Text("Hello, world!")
+                .padding()
+                .setThemeStyle("sd")
+//                .background(.yellow, in: Rectangle())
+        }
+        .foregroundColor(.red)
     }
 }
 

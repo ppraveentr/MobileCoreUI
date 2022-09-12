@@ -7,3 +7,4 @@ DerivedData/
 .netrc
 fastlane/report.xml
 .swiftpm
+*.xcuserstate
