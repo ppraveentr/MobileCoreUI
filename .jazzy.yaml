@@ -1,0 +1,9 @@
+# Ordered by output of `jazzy — help config`
+module: MobileCoreUI
+swift_build_tool: spm
+build_tool_arguments: [ "-Xswiftc", "-swift-version", "-Xswiftc", "5" ]
+output: docs
+clean: true
+author: ppraveentr
+min_acl: public
+theme: apple
