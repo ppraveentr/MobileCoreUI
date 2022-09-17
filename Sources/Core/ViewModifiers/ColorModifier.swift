@@ -25,7 +25,7 @@ public struct ColorModifier: ViewModifier {
     public init(themeValue: ColorModifierStyle) {
         self.themeValue = themeValue
     }
-    
+
     public func body(content: Content) -> some View {
         return Group {
             let color = themeValue.value(colorScheme)

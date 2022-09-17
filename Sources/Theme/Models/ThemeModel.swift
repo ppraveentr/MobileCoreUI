@@ -16,7 +16,7 @@ public struct ThemeModel {
     struct UserStyle {
         var forgroundColor: ColorSchemaValue<Color>?
         var font: ColorSchemaValue<Font>?
-        
+
         init(fcLight: Color? = nil, fcDark: Color? = nil, font: Font? = nil) {
             if let fcLight = fcLight {
                 self.forgroundColor = ColorSchemaValue(light: fcLight, dark: fcDark)
@@ -40,18 +40,18 @@ extension ThemeModel {
         theme.styles?.forEach { model.styles[$0] = Self.styleFromValue($1, model: model) }
         return model
     }
-    
+
     private static func colorFromValue(_ name: String) -> Color? {
         if name.hasPrefix("#") {
             return Color(hex: name)
         }
         return nil
     }
-    
+
     private static func fontFromValue(_ style: ThemeSchema.FontSchema) -> Font? {
         return nil
     }
-    
+
     private static func styleFromValue(_ style: ThemeSchema.CustomStyle, model: ThemeModel) -> UserStyle? {
         let (fcLight, fcDark) = (model.colors[style.forgroundColor?.light ?? ""], model.colors[style.forgroundColor?.dark ?? ""])
         let font = model.fonts[style.font ?? ""]
