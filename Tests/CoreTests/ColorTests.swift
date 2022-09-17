@@ -1,3 +1,10 @@
+//
+//  ColorTests.swift
+//  UnitTest
+//
+//  Created by Praveen Prabhakar on 03/09/22.
+//
+
 import SwiftUI
 import XCTest
 @testable import Core
