@@ -44,7 +44,14 @@ lane :test do
 end
 
 desc "Generate Documentation using jazzy"
-lane :doc do
+lane :generate_doc do
 	# Generate Doc
     jazzy
+end
+
+desc "Build, Test and Generate Doc"
+lane :reports do
+    lint
+    test
+    generate_doc
 end

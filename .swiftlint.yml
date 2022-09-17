@@ -1,0 +1,43 @@
+large_tuple: 4
+function_body_length : 50
+function_parameter_count: 9
+warning_threshold: 1
+closure_body_length: 16
+file_length: 750
+
+cyclomatic_complexity:
+  warning: 6
+  ignores_case_statements: true
+
+line_length:
+  warning: 160
+  ignores_function_declarations: true
+  ignores_comments: true
+
+nesting:
+  type_level: 3
+
+conditional_returns_on_newline:
+  if_only: true
+
+identifier_name:
+  max_length: 40
+  min_length: 1
+
+statement_position:
+  statement_mode: uncuddled_else
+
+file_name:
+  prefix_pattern: ""
+  suffix_pattern: "(Extension|Theme)?|\\+.*"
+
+warning_threshold: 1
+
+custom_rules:
+  no_break_with_label:
+    regex: "[ ]+break [A-z0-9]+"
+    message: "Please, don't use break with label"
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - Example
