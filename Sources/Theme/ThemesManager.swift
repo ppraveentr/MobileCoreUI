@@ -10,48 +10,48 @@ import SwiftUI
 
 public class ThemesManager: ObservableObject {
     public static let shared = ThemesManager()
-    public private(set) var themeModel: ThemeValue<ThemeModel>?
+    @Published public private(set) var themeModel: ThemeModel?
 
     private init() { /* dummpy function */ }
 
-/// Call this function to generate `ThemeValue: ThemeModel` async,
-/// based on the `light` and `dark` json`ThemeValue: ThemeDic`
+/// Call this function to generate `ColorSchemaValue: ThemeModel`,
+/// For `light` and `dark` style from Data dictionary ofType`ThemeDic`
 ///
 /// - Parameters:
-///   - jsonData: `ThemeDic` JSON for `light` and `dark`
-    public func loadThemeModel(_ jsonData: ThemeValue<ThemeDic>) async throws {
-        let (lightJSON, darkJSON) = (jsonData.light, jsonData.dark)
+///   - jsonData: `ColorSchemaValue<Data>` of json  for `light` and `dark` style
+    public func loadThemeModel(_ jsonData: Data) throws {
         do {
-            let light = try await ThemeModel.generateModel(lightJSON)
-            var dark: ThemeModel?
-            if let darkJSON = darkJSON {
-                dark = try? await ThemeModel.generateModel(darkJSON)
-            }
-            themeModel = ThemeValue(light: light, dark: dark)
+            themeModel = try ThemeModel.generateModel(jsonData)
         }
     }
 }
 
-/// Extentions to get 'ThemeValue' based on style name
+/// Extentions to get 'ColorSchemaValue' based on style name
 extension ThemesManager {
-/// Call this function to get `ThemeValue: Color`
+/// Call this function to get `ColorSchemaValue: Color`
 ///
 /// - Parameters:
 ///   - style: Name of the style to fetch
-/// - Returns: Gets `light` and `dark` style value for: `Color`
-    static func color(_ style: String) -> ThemeValue<Color>? {
-        if style.isEmpty {
-            return nil
-        }
-        return ThemeValue(light: .blue, dark: .red)
+/// - Returns: `Color`
+    static func color(_ name: String) -> Color? {
+        Self.shared.themeModel?.colors[name]
     }
 
-/// Call this function to get `ThemeValue: Font`
+/// Call this function to get `ColorSchemaValue: Font`
 ///
 /// - Parameters:
 ///   - style: Name of the style to fetch
-/// - Returns: Gets `light` and `dark`style value for: `Font`
-    static func font(_ style: String) -> ThemeValue<Font>? {
-        return ThemeValue(light: .headline, dark: .title)
+/// - Returns: `Font`
+    static func font(_ name: String) -> Font? {
+        Self.shared.themeModel?.fonts[name]
+    }
+    
+/// Call this function to get `ColorSchemaValue: ThemeStyles`
+///
+/// - Parameters:
+///   - style: Name of the style to fetch
+/// - Returns: User defied style: `ThemeModel.UserStyle`
+    static func style(_ name: String) -> ThemeModel.UserStyle? {
+        Self.shared.themeModel?.styles[name]
     }
 }

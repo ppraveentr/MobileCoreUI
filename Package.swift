@@ -7,13 +7,17 @@ let package = Package(
     name: "MobileCoreUI",
     platforms: [.iOS(.v13), .macOS(.v10_15)],
     products: [
-        .library(name: "MobileCoreUI", targets: ["MobileCoreUI", "Theme"])
+        .library(name: "MobileCoreUI", targets: ["Theme", "Core"])
     ],
-    dependencies: [ ],
+    dependencies: [
+        // .package(url: "https://github.com/apple/swift-docc-plugin", branch: "main")
+    ],
     targets: [
-        .target(name: "MobileCoreUI", dependencies: ["Theme"]),
-        .testTarget(name: "MobileCoreUITests", dependencies: ["MobileCoreUI"]),
-        .target(name: "Theme"),
-        .testTarget(name: "ThemeTests", dependencies: ["Theme"])
+        // Theme
+        .target(name: "Theme", dependencies: ["Core"]),
+        .testTarget(name: "ThemeTests", dependencies: ["Theme"]),
+        // Extensions
+        .target(name: "Core"),
+        .testTarget(name: "CoreTests", dependencies: ["Core"])
     ]
 )

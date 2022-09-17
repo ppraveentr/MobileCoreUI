@@ -5,6 +5,7 @@
 //  Created by Praveen Prabhakar on 11/09/22.
 //
 
+import Core
 import SwiftUI
 
 /// A modifier that you apply to a view or another view modifier, producing a
@@ -32,19 +33,13 @@ import SwiftUI
 public struct ThemeModifier: ViewModifier {
     let name: String
 
-    @State private var forgroundColor: ThemeValue<Color>?
-    @State private var font: ThemeValue<Font>?
+    @State private var themeStyle: ThemeModel.UserStyle?
 
     public func body(content: Content) -> some View {
-        DispatchQueue.main.async { loadThemeData() }
+        DispatchQueue.main.async { themeStyle = ThemesManager.style(name) }
         return content
-            .modifier(FontModifier(themeValue: font))
-            .setThemeColor(.foregroundColor(color: forgroundColor))
-    }
-
-    func loadThemeData() {
-        forgroundColor = ThemesManager.color(name)
-        font = ThemesManager.font(name)
+            .setThemeFont(themeStyle?.font)
+            .setThemeColor(.foregroundColor(color: themeStyle?.forgroundColor))
     }
 }
 
@@ -56,13 +51,5 @@ public extension View {
 /// - Returns: Modified ``View`` that incorporates the view modifier.
     func setThemeStyle(_ name: String) -> some View {
         modifier(ThemeModifier(name: name))
-    }
-
-/// Call this function to set the Color's based on ``ColorModifierStyle`` enum
-/// - Parameters:
-///   - name: Configured ``ColorModifierStyle`` theme color
-/// - Returns: Modified ``View`` that incorporates the view modifier.
-    func setThemeColor(_ color: ColorModifierStyle) -> some View {
-        modifier(ColorModifier(themeValue: color))
     }
 }

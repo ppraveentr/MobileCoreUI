@@ -8,3 +8,4 @@ DerivedData/
 fastlane/report.xml
 .swiftpm
 *.xcuserstate
+*.resolved
