@@ -14,15 +14,15 @@ public struct ThemeModel {
     var styles = [String: UserStyle]()
 
     struct UserStyle {
-        var forgroundColor: ColorSchemaValue<Color>?
-        var font: ColorSchemaValue<Font>?
+        var forgroundColor: ColorSchemeValue<Color>?
+        var font: ColorSchemeValue<Font>?
 
         init(fcLight: Color? = nil, fcDark: Color? = nil, font: Font? = nil) {
             if let fcLight = fcLight {
-                self.forgroundColor = ColorSchemaValue(light: fcLight, dark: fcDark)
+                self.forgroundColor = ColorSchemeValue(light: fcLight, dark: fcDark)
             }
             if let fLight = font {
-                self.font = ColorSchemaValue(light: fLight, dark: nil)
+                self.font = ColorSchemeValue(light: fLight, dark: nil)
             }
         }
     }
@@ -30,7 +30,7 @@ public struct ThemeModel {
 
 extension ThemeModel {
     static func generateModel(_ jsonData: Data) throws -> Self {
-        let theme = try JSONDecoder().decode(ThemeSchema.self, from: jsonData)
+        let theme = try JSONDecoder().decode(ThemeScheme.self, from: jsonData)
         var model = ThemeModel()
         // Generate Colors
         theme.colors?.forEach { model.colors[$0] = Self.colorFromValue($1) }
@@ -48,11 +48,11 @@ extension ThemeModel {
         return nil
     }
 
-    private static func fontFromValue(_ style: ThemeSchema.FontSchema) -> Font? {
+    private static func fontFromValue(_ style: ThemeScheme.FontScheme) -> Font? {
         return nil
     }
 
-    private static func styleFromValue(_ style: ThemeSchema.CustomStyle, model: ThemeModel) -> UserStyle? {
+    private static func styleFromValue(_ style: ThemeScheme.CustomStyle, model: ThemeModel) -> UserStyle? {
         let (fcLight, fcDark) = (model.colors[style.forgroundColor?.light ?? ""], model.colors[style.forgroundColor?.dark ?? ""])
         let font = model.fonts[style.font ?? ""]
         return UserStyle(fcLight: fcLight, fcDark: fcDark, font: font)

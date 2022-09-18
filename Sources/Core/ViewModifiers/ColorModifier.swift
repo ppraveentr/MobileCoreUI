@@ -8,7 +8,7 @@
 import SwiftUI
 
 public enum ColorModifierStyle {
-    case foregroundColor(color: ColorSchemaValue<Color>?)
+    case foregroundColor(color: ColorSchemeValue<Color>?)
 
     func value(_ colorScheme: ColorScheme) -> Color? {
         switch self {
@@ -42,7 +42,7 @@ public struct ColorModifier: ViewModifier {
 public extension View {
 /// Call this function to set the Color's based on ``ColorModifierStyle`` enum
 /// - Parameters:
-///   - name: Configured ``ColorModifierStyle`` with ``ColorSchemaValue`` color
+///   - name: Configured ``ColorModifierStyle`` with ``ColorSchemeValue`` color
 /// - Returns: Modified ``View`` that incorporates modifier.
     func setThemeColor(_ color: ColorModifierStyle) -> some View {
         modifier(ColorModifier(themeValue: color))
