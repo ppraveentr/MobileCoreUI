@@ -14,7 +14,7 @@ public struct FontModifier: ViewModifier {
     public init(themeValue: ColorSchemaValue<Font>?) {
         self.themeValue = themeValue
     }
-    
+
     public func body(content: Content) -> some View {
         Group {
             if themeValue != nil {

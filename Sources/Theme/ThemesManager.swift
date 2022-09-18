@@ -45,7 +45,7 @@ extension ThemesManager {
     static func font(_ name: String) -> Font? {
         Self.shared.themeModel?.fonts[name]
     }
-    
+
 /// Call this function to get `ColorSchemaValue: ThemeStyles`
 ///
 /// - Parameters:
