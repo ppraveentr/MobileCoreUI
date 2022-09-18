@@ -14,11 +14,11 @@ public class ThemesManager: ObservableObject {
 
     private init() { /* dummpy function */ }
 
-/// Call this function to generate `ColorSchemaValue: ThemeModel`,
+/// Call this function to generate `ColorSchemeValue: ThemeModel`,
 /// For `light` and `dark` style from Data dictionary ofType`ThemeDic`
 ///
 /// - Parameters:
-///   - jsonData: `ColorSchemaValue<Data>` of json  for `light` and `dark` style
+///   - jsonData: `ColorSchemeValue<Data>` of json  for `light` and `dark` style
     public func loadThemeModel(_ jsonData: Data) throws {
         do {
             themeModel = try ThemeModel.generateModel(jsonData)
@@ -26,9 +26,9 @@ public class ThemesManager: ObservableObject {
     }
 }
 
-/// Extentions to get 'ColorSchemaValue' based on style name
+/// Extentions to get 'ColorSchemeValue' based on style name
 extension ThemesManager {
-/// Call this function to get `ColorSchemaValue: Color`
+/// Call this function to get `ColorSchemeValue: Color`
 ///
 /// - Parameters:
 ///   - style: Name of the style to fetch
@@ -37,7 +37,7 @@ extension ThemesManager {
         Self.shared.themeModel?.colors[name]
     }
 
-/// Call this function to get `ColorSchemaValue: Font`
+/// Call this function to get `ColorSchemeValue: Font`
 ///
 /// - Parameters:
 ///   - style: Name of the style to fetch
@@ -46,7 +46,7 @@ extension ThemesManager {
         Self.shared.themeModel?.fonts[name]
     }
 
-/// Call this function to get `ColorSchemaValue: ThemeStyles`
+/// Call this function to get `ColorSchemeValue: ThemeStyles`
 ///
 /// - Parameters:
 ///   - style: Name of the style to fetch
