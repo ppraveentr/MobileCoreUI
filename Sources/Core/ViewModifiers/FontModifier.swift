@@ -8,10 +8,10 @@
 import SwiftUI
 
 public struct FontModifier: ViewModifier {
-    let themeValue: ColorSchemaValue<Font>?
+    let themeValue: ColorSchemeValue<Font>?
     @Environment(\.colorScheme) var colorScheme
 
-    public init(themeValue: ColorSchemaValue<Font>?) {
+    public init(themeValue: ColorSchemeValue<Font>?) {
         self.themeValue = themeValue
     }
 
@@ -28,11 +28,11 @@ public struct FontModifier: ViewModifier {
 }
 
 public extension View {
-/// Call this function to set the Color's based on ``ColorSchemaValue``
+/// Call this function to set the Color's based on ``ColorSchemeValue``
 /// - Parameters:
 ///   - name: Configured `ligh` and `dark` mode value for `Font`
 /// - Returns: Modified ``View`` that incorporates the view modifier.
-    func setThemeFont(_ font: ColorSchemaValue<Font>?) -> some View {
+    func setThemeFont(_ font: ColorSchemeValue<Font>?) -> some View {
         return modifier(FontModifier(themeValue: font))
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ColorSchemaValue.swift
+//  ColorSchemeValue.swift
 //  Core
 //
 //  Created by Praveen Prabhakar on 16/09/22.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct ColorSchemaValue<T> {
+public struct ColorSchemeValue<T> {
     public var light: T, dark: T?
     var optionalDark: T { dark ?? light }
 
