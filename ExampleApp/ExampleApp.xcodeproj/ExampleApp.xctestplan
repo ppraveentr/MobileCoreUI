@@ -28,8 +28,15 @@
     {
       "target" : {
         "containerPath" : "container:..",
-        "identifier" : "MobileCoreUITests",
-        "name" : "MobileCoreUITests"
+        "identifier" : "CoreTests",
+        "name" : "CoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "ThemeTests",
+        "name" : "ThemeTests"
       }
     }
   ],

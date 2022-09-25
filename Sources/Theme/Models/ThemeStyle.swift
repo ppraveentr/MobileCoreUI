@@ -1,5 +1,5 @@
 //
-//  ThemeScheme.swift
+//  ThemeStyle.swift
 //  Theme
 //
 //  Created by Praveen Prabhakar on 16/09/22.
@@ -7,23 +7,23 @@
 
 import Foundation
 
-struct ThemeScheme: Codable {
-    struct FontScheme: Codable {
+struct ThemeStyle: Codable {
+    struct FontStyle: Codable {
         var size: Float
         var weight: String?
     }
 
-    struct ColorMode: Codable {
+    struct ColorStyle: Codable {
         var light: String
         var dark: String?
     }
 
-    struct CustomStyle: Codable {
-        var forgroundColor: ColorMode?
+    struct UserStyle: Codable {
+        var forgroundColor: ColorStyle?
         var font: String?
     }
 
     var colors: [String: String]?
-    var fonts: [String: FontScheme]?
-    var styles: [String: CustomStyle]?
+    var fonts: [String: FontStyle]?
+    var styles: [String: UserStyle]?
 }
