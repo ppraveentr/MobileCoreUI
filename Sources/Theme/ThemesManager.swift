@@ -20,9 +20,7 @@ public class ThemesManager: ObservableObject {
 /// - Parameters:
 ///   - jsonData: `ColorSchemeValue<Data>` of json  for `light` and `dark` style
     public func loadThemeModel(_ jsonData: Data) throws {
-        do {
-            themeModel = try ThemeModel.generateModel(jsonData)
-        }
+        themeModel = try ThemeModel.generateModel(jsonData)
     }
 }
 

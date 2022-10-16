@@ -8,7 +8,7 @@
 import Core
 import SwiftUI
 
-public struct ThemeModel {
+public class ThemeModel {
     var colors = [String: Color]()
     var fonts = [String: Font]()
     var styles = [String: UserStyle]()
@@ -29,30 +29,32 @@ public struct ThemeModel {
 }
 
 extension ThemeModel {
-    static func generateModel(_ jsonData: Data) throws -> Self {
-        let theme = try JSONDecoder().decode(ThemeScheme.self, from: jsonData)
-        var model = ThemeModel()
-        // Generate Colors
+    static func generateModel(_ jsonData: Data) throws -> ThemeModel {
+        let theme = try JSONDecoder().decode(ThemeStyle.self, from: jsonData)
+        let model = ThemeModel()
+            // Generate Colors
         theme.colors?.forEach { model.colors[$0] = Self.colorFromValue($1) }
-        // Generate Fonts
+            // Generate Fonts
         theme.fonts?.forEach { model.fonts[$0] = Self.fontFromValue($1) }
-        // Generate Theme Style
+            // Generate Theme Style
         theme.styles?.forEach { model.styles[$0] = Self.styleFromValue($1, model: model) }
         return model
     }
-
-    private static func colorFromValue(_ name: String) -> Color? {
+}
+/// Generate Style value from name
+private extension ThemeModel {
+    static func colorFromValue(_ name: String) -> Color? {
         if name.hasPrefix("#") {
             return Color(hex: name)
         }
         return nil
     }
 
-    private static func fontFromValue(_ style: ThemeScheme.FontScheme) -> Font? {
+    static func fontFromValue(_ style: ThemeStyle.FontStyle) -> Font? {
         return nil
     }
 
-    private static func styleFromValue(_ style: ThemeScheme.CustomStyle, model: ThemeModel) -> UserStyle? {
+    static func styleFromValue(_ style: ThemeStyle.UserStyle, model: ThemeModel) -> UserStyle? {
         let (fcLight, fcDark) = (model.colors[style.forgroundColor?.light ?? ""], model.colors[style.forgroundColor?.dark ?? ""])
         let font = model.fonts[style.font ?? ""]
         return UserStyle(fcLight: fcLight, fcDark: fcDark, font: font)

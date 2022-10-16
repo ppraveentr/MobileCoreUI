@@ -29,9 +29,6 @@ identifier_name:
   max_length: 40
   min_length: 1
 
-statement_position:
-  statement_mode: uncuddled_else
-
 file_name:
   prefix_pattern: ""
   suffix_pattern: "(Extension|Theme)?|\\+.*"

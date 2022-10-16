@@ -20,7 +20,7 @@ struct ExampleApp: App {
     }
 
     func loadThemeModel() async {
-        guard let lightTheme = try? themeData("Theme") else { return }
+        guard let lightTheme = try? Data.contentOfFile("Theme.json") else { return }
         try? ThemesManager.shared.loadThemeModel(lightTheme)
     }
 
