@@ -31,7 +31,7 @@ public class ThemeModel {
 extension ThemeModel {
     static func generateModel(_ jsonData: Data) throws -> ThemeModel {
         let theme = try JSONDecoder().decode(ThemeStyle.self, from: jsonData)
-        var model = ThemeModel()
+        let model = ThemeModel()
             // Generate Colors
         theme.colors?.forEach { model.colors[$0] = Self.colorFromValue($1) }
             // Generate Fonts

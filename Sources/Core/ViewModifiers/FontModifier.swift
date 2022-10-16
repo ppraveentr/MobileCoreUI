@@ -19,8 +19,7 @@ public struct FontModifier: ViewModifier {
         Group {
             if themeValue != nil {
                 content.font(themeValue?.value(colorScheme))
-            }
-            else {
+            } else {
                 content
             }
         }
