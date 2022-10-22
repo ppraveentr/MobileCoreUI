@@ -9,4 +9,7 @@
 
 # MobileCoreUI
 
-A description of this package.
+## Theme
+A way to organize and manage style across the application dynamically (dark and light mode).
+
+![MobileCoreUI-text](https://user-images.githubusercontent.com/15041699/197366040-9901341a-0865-430b-a65d-beae6fa08c4f.gif)
