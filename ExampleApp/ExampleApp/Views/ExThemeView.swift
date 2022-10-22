@@ -1,5 +1,5 @@
 //
-//  ThemeView.swift
+//  ExThemeView.swift
 //  ExampleApp
 //
 //  Created by Praveen Prabhakar on 17/09/22.
@@ -9,7 +9,7 @@ import Core
 import SwiftUI
 import Theme
 
-struct ThemeView: View {
+struct ExThemeView: View {
     var themeColor: ColorSchemeValue<Color> {
         ColorSchemeValue(light: .blue, dark: .red)
     }
@@ -25,13 +25,13 @@ struct ThemeView: View {
                 .foregroundColor(.blue)
                 .padding(.bottom, 40)
             Text("Value based on group's foregroundColor: Green")
-                .setThemeStyle("")
+                .style("")
             Text("Red in LightMode and White in DarkMode")
-                .setThemeStyle("Text15R")
+                .style("Text15R")
             Text("Blue in LightMode and Red in DarkMode")
-                .setThemeColor(.foregroundColor(color: themeColor))
+                .theme(.foregroundColor(color: themeColor))
             Text("Font as 'largeTitle' in LightMode and 'headline' in DarkMode")
-                .setThemeFont(themeFont)
+                .theme(themeFont)
             Spacer()
         }
         .foregroundColor(.green)
@@ -40,8 +40,8 @@ struct ThemeView: View {
     }
 }
 
-struct ThemeView_Previews: PreviewProvider {
+struct ExThemeView_Previews: PreviewProvider {
     static var previews: some View {
-        ThemeView()
+        ExThemeView()
     }
 }

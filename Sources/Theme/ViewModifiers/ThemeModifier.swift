@@ -25,7 +25,7 @@ import SwiftUI
 /// Instead, you can then apply the theme style to any view, similar to this:
 ///
 ///     Text("Downtown Bus")
-///         .setThemeStyle("styleName")
+///         .style("styleName")
 ///
 /// This shows the Text View: "Downtown Bus", using custom a modifier, renders the
 /// text in blue text with "Titlte" font.
@@ -38,8 +38,8 @@ public struct ThemeModifier: ViewModifier {
     public func body(content: Content) -> some View {
         DispatchQueue.main.async { themeStyle = ThemesManager.style(name) }
         return content
-            .setThemeFont(themeStyle?.font)
-            .setThemeColor(.foregroundColor(color: themeStyle?.forgroundColor))
+            .theme(themeStyle?.font)
+            .theme(.foregroundColor(color: themeStyle?.forgroundColor))
     }
 }
 
@@ -49,7 +49,7 @@ public extension View {
 /// - Parameters:
 ///   - name: StyleName for the element
 /// - Returns: Modified ``View`` that incorporates the view modifier.
-    func setThemeStyle(_ name: String) -> some View {
+    func style(_ name: String) -> some View {
         modifier(ThemeModifier(name: name))
     }
 }

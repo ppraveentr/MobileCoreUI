@@ -44,7 +44,7 @@ public extension View {
 /// - Parameters:
 ///   - name: Configured ``ColorModifierStyle`` with ``ColorSchemeValue`` color
 /// - Returns: Modified ``View`` that incorporates modifier.
-    func setThemeColor(_ color: ColorModifierStyle) -> some View {
+    func theme(_ color: ColorModifierStyle) -> some View {
         modifier(ColorModifier(themeValue: color))
     }
 }
