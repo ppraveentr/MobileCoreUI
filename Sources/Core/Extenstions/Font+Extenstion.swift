@@ -16,13 +16,13 @@ public extension Font {
         case "title":
             return .title
         case "title2":
-            if #available(iOS 14.0, *) {
+            if #available(iOS 14.0, macOS 11.0, *) {
                 return .title2
             } else {
                 return .title
             }
         case "title3":
-            if #available(iOS 14.0, *) {
+            if #available(iOS 14.0, macOS 11.0, *) {
                 return .title3
             } else {
                 return .title
@@ -40,7 +40,7 @@ public extension Font {
         case "caption":
             return .caption
         case "caption2":
-            if #available(iOS 14.0, *) {
+            if #available(iOS 14.0, macOS 11.0, *) {
                 return .caption2
             } else {
                 return .caption
