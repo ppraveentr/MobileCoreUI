@@ -10,10 +10,7 @@ import SwiftUI
 import Theme
 
 struct ExThemeView: View {
-    var themeFont: ColorSchemeValue<Font> {
-        ColorSchemeValue(.largeTitle, dark: .headline)
-    }
-
+    var themeFont: ColorSchemeValue<Font> { .init(.largeTitle, dark: .headline) }
     @AppStorage("isLightMode") var isLightMode: Bool = true
 
     var body: some View {
@@ -23,14 +20,15 @@ struct ExThemeView: View {
             Text("Font as 'title' in LightMode and 'headline' in DarkMode")
                 .theme(themeFont)
             Text("'Red' in LightMode and 'White' in DarkMode")
-                .style("TextRW")
+                .style("TitleRW")
             Text("'Blue' in LightMode and 'Red' in DarkMode")
-                .theme(.foreground(color: ColorSchemeValue(.blue, dark: .red)))
+                .style("BodyBR")
             Spacer()
         }
         .foregroundColor(.green)
         .padding(20)
         .modifier(ColorSchemeModifier(isLightMode: $isLightMode))
+        .navigationTitle("Themes - Dark/Light Mode")
     }
 }
 
