@@ -1,5 +1,5 @@
 //
-//  ColorSchemeModeModifier.swift
+//  ColorSchemeModifier.swift
 //  Core
 //
 //  Created by Praveen Prabhakar on 17/09/22.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 13.0, macOS 11.0, tvOS 13.0, watchOS 6.0, *)
-public struct ColorSchemeModeModifier: ViewModifier {
+public struct ColorSchemeModifier: ViewModifier {
 
     public let isLightMode: Binding<Bool>
 
@@ -17,7 +17,7 @@ public struct ColorSchemeModeModifier: ViewModifier {
     }
 
     public func body(content: Content) -> some View {
-        return content
+        content
             .preferredColorScheme(isLightMode.wrappedValue ? .light : .dark)
     }
 }

@@ -39,7 +39,7 @@ public struct ThemeModifier: ViewModifier {
         DispatchQueue.main.async { themeStyle = ThemesManager.style(name) }
         return content
             .theme(themeStyle?.font)
-            .theme(.foregroundColor(color: themeStyle?.forgroundColor))
+            .theme(.foreground(color: themeStyle?.forgroundColor))
     }
 }
 

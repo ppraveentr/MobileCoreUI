@@ -32,6 +32,6 @@ public extension View {
 ///   - name: Configured `ligh` and `dark` mode value for `Font`
 /// - Returns: Modified ``View`` that incorporates the view modifier.
     func theme(_ font: ColorSchemeValue<Font>?) -> some View {
-        return modifier(FontModifier(themeValue: font))
+        modifier(FontModifier(themeValue: font))
     }
 }

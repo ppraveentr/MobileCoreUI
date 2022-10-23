@@ -10,33 +10,27 @@ import SwiftUI
 import Theme
 
 struct ExThemeView: View {
-    var themeColor: ColorSchemeValue<Color> {
-        ColorSchemeValue(light: .blue, dark: .red)
-    }
     var themeFont: ColorSchemeValue<Font> {
-        ColorSchemeValue(light: .largeTitle, dark: .headline)
+        ColorSchemeValue(.largeTitle, dark: .headline)
     }
 
     @AppStorage("isLightMode") var isLightMode: Bool = true
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 20) {
             Toggle("Color Scheme", isOn: $isLightMode)
-                .foregroundColor(.blue)
-                .padding(.bottom, 40)
-            Text("Value based on group's foregroundColor: Green")
-                .style("")
-            Text("Red in LightMode and White in DarkMode")
-                .style("Text15R")
-            Text("Blue in LightMode and Red in DarkMode")
-                .theme(.foregroundColor(color: themeColor))
-            Text("Font as 'largeTitle' in LightMode and 'headline' in DarkMode")
                 .theme(themeFont)
+            Text("Font as 'title' in LightMode and 'headline' in DarkMode")
+                .theme(themeFont)
+            Text("'Red' in LightMode and 'White' in DarkMode")
+                .style("TextRW")
+            Text("'Blue' in LightMode and 'Red' in DarkMode")
+                .theme(.foreground(color: ColorSchemeValue(.blue, dark: .red)))
             Spacer()
         }
         .foregroundColor(.green)
         .padding(20)
-        .modifier(ColorSchemeModeModifier(isLightMode: $isLightMode))
+        .modifier(ColorSchemeModifier(isLightMode: $isLightMode))
     }
 }
 
