@@ -9,4 +9,51 @@
 
 # MobileCoreUI
 
-A description of this package.
+## Theme - Submoudle of MobileCoreUI
+A way to organize and manage style across the application dynamically (dark and light mode).
+
+### Usage
+App's styles are defined thorugh a JSON file, which can loaded once app is lanched.
+
+#### Sample - Theme.Json
+```json
+{
+    "version": "1.0",
+    "colors": {
+        "white": "#FFFFFF",
+        "red": "#EE4B2B"
+    },
+    "fonts": {
+        "subHeader": { "weight": "subheadline" }
+    },
+    "styles": {
+        "TextRW": {
+            "forgroundColor": {"light": "red", "dark": "white"},
+            "font": "subHeader"
+        }
+    }
+}
+```
+
+We can load the json file into Manager as:
+```swift
+   guard let themeModel = try? Data.contentOfFile("Theme.json") else { return }
+   try? ThemesManager.loadThemeModel(themeModel)
+}
+```
+
+Configure the SwiftUI Text style as below:
+```swift
+    Toggle("Color Scheme", isOn: $isLightMode)
+      .theme(ColorSchemeValue(.title, dark: .headline))
+    Text("Font as 'title' in LightMode and 'headline' in DarkMode")
+      .theme(ColorSchemeValue(.title, dark: .headline))
+    Text("'Red' in LightMode and 'White' in DarkMode")
+      .style("TextRW")
+    Text("'Blue' in LightMode and 'Red' in DarkMode")
+      .theme(.foreground(color: .init(.blue, dark: .red)))
+}
+```
+
+![MobileCoreUI-Color-Font](https://user-images.githubusercontent.com/15041699/197370343-8bd27dcc-9f04-4b99-afdd-64b0030c08b9.gif)
+
