@@ -5,13 +5,12 @@
         "red": "#EE4B2B"
     },
     "fonts": {
-        "headerTitle": { "size": 12, "weight": "" }
+        "subHeader": { "weight": "subheadline" }
     },
     "styles": {
-        "Text15R": {
+        "TextRW": {
             "forgroundColor": {"light": "red", "dark": "white"},
-            "font": "headerTitle"
+            "font": "subHeader"
         }
     }
 }
-

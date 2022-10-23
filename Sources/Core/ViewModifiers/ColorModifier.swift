@@ -8,11 +8,11 @@
 import SwiftUI
 
 public enum ColorModifierStyle {
-    case foregroundColor(color: ColorSchemeValue<Color>?)
+    case foreground(color: ColorSchemeValue<Color>?)
 
     func value(_ colorScheme: ColorScheme) -> Color? {
         switch self {
-        case let .foregroundColor(color):
+        case let .foreground(color):
             return color?.value(colorScheme)
         }
     }
@@ -27,10 +27,10 @@ public struct ColorModifier: ViewModifier {
     }
 
     public func body(content: Content) -> some View {
-        return Group {
+        Group {
             let color = themeValue.value(colorScheme)
             switch themeValue {
-            case .foregroundColor where color != nil:
+            case .foreground where color != nil:
                 content.foregroundColor(color)
             default:
                 content
@@ -44,7 +44,7 @@ public extension View {
 /// - Parameters:
 ///   - name: Configured ``ColorModifierStyle`` with ``ColorSchemeValue`` color
 /// - Returns: Modified ``View`` that incorporates modifier.
-    func setThemeColor(_ color: ColorModifierStyle) -> some View {
+    func theme(_ color: ColorModifierStyle) -> some View {
         modifier(ColorModifier(themeValue: color))
     }
 }

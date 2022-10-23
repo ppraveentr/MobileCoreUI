@@ -12,7 +12,7 @@ public struct ColorSchemeValue<T> {
     public var light: T, dark: T?
     var optionalDark: T { dark ?? light }
 
-    public init(light: T, dark: T? = nil) {
+    public init(_ light: T, dark: T? = nil) {
         self.light = light
         self.dark = dark
     }

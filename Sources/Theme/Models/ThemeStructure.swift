@@ -1,16 +1,20 @@
 //
-//  ThemeStyle.swift
+//  ThemeStructure.swift
 //  Theme
 //
 //  Created by Praveen Prabhakar on 16/09/22.
 //
 
 import Foundation
+import SwiftUI
 
-struct ThemeStyle: Codable {
+struct ThemeStructure: Codable {
     struct FontStyle: Codable {
-        var size: Float
+        var size: CGFloat?
+        /// Based on ``Font/Weight``
         var weight: String?
+        /// Based on ``Font/TextStyle``
+        var styleName: String?
     }
 
     struct ColorStyle: Codable {

@@ -19,44 +19,61 @@ public class ThemeModel {
 
         init(fcLight: Color? = nil, fcDark: Color? = nil, font: Font? = nil) {
             if let fcLight = fcLight {
-                self.forgroundColor = ColorSchemeValue(light: fcLight, dark: fcDark)
+                self.forgroundColor = ColorSchemeValue(fcLight, dark: fcDark)
             }
             if let fLight = font {
-                self.font = ColorSchemeValue(light: fLight, dark: nil)
+                self.font = ColorSchemeValue(fLight, dark: nil)
             }
         }
     }
 }
 
+/// Generate ``ThemeModel`` based on `json Data`
 extension ThemeModel {
     static func generateModel(_ jsonData: Data) throws -> ThemeModel {
-        let theme = try JSONDecoder().decode(ThemeStyle.self, from: jsonData)
+        let theme = try JSONDecoder().decode(ThemeStructure.self, from: jsonData)
         let model = ThemeModel()
             // Generate Colors
-        theme.colors?.forEach { model.colors[$0] = Self.colorFromValue($1) }
+        theme.colors?.forEach { model.colors[$0] = Color.style($1) }
             // Generate Fonts
-        theme.fonts?.forEach { model.fonts[$0] = Self.fontFromValue($1) }
+        theme.fonts?.forEach { model.fonts[$0] = Font.style($1) }
             // Generate Theme Style
-        theme.styles?.forEach { model.styles[$0] = Self.styleFromValue($1, model: model) }
+        theme.styles?.forEach { model.styles[$0] = Self.style($1, model: model) }
         return model
     }
+
+    /// Generate ``ThemeModel/UserStyle`` based on ``ThemeStructure.UserStyle``
+    private static
+    func style(_ style: ThemeStructure.UserStyle, model: ThemeModel) -> UserStyle? {
+        let (fcLight, fcDark) = (model.colors[style.forgroundColor?.light ?? ""],
+                                 model.colors[style.forgroundColor?.dark ?? ""])
+        let font = model.fonts[style.font ?? ""]
+        return UserStyle(fcLight: fcLight, fcDark: fcDark, font: font)
+    }
 }
-/// Generate Style value from name
-private extension ThemeModel {
-    static func colorFromValue(_ name: String) -> Color? {
+
+/// Generate ``Font`` based on ``ThemeStructure.FontStyle``
+extension Font {
+    static func style(_ style: ThemeStructure.FontStyle) -> Font? {
+            /// Generate ``Font`` based on StyleName ``Font/TextStyle``
+        if let styleName = style.styleName,
+            let font = Font.fromStyleName(styleName: styleName) {
+            return font
+        }
+            /// Generate ``Font`` based on ``Size: CGFloat`` and ``Font/Weight``
+        if let size = style.size, let weight = style.weight {
+            return .fromSize(size: size, weight: weight)
+        }
+        return nil
+    }
+}
+
+/// Generate ``Color`` based on `hex color`
+extension Color {
+    static func style(_ name: String) -> Color? {
         if name.hasPrefix("#") {
             return Color(hex: name)
         }
         return nil
-    }
-
-    static func fontFromValue(_ style: ThemeStyle.FontStyle) -> Font? {
-        return nil
-    }
-
-    static func styleFromValue(_ style: ThemeStyle.UserStyle, model: ThemeModel) -> UserStyle? {
-        let (fcLight, fcDark) = (model.colors[style.forgroundColor?.light ?? ""], model.colors[style.forgroundColor?.dark ?? ""])
-        let font = model.fonts[style.font ?? ""]
-        return UserStyle(fcLight: fcLight, fcDark: fcDark, font: font)
     }
 }

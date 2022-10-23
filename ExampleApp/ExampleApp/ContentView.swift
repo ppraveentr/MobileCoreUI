@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Form {
-                NavigationContentView(title: "Dark/Light Mode Themes example") { ThemeView() }
+                NavigationContentView(title: "Dark/Light Mode Themes example") { ExThemeView() }
             }
         }
         .navigationTitle("MobileCoreUI")

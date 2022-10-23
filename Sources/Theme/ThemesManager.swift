@@ -19,8 +19,8 @@ public class ThemesManager: ObservableObject {
 ///
 /// - Parameters:
 ///   - jsonData: `ColorSchemeValue<Data>` of json  for `light` and `dark` style
-    public func loadThemeModel(_ jsonData: Data) throws {
-        themeModel = try ThemeModel.generateModel(jsonData)
+    public static func loadThemeModel(_ jsonData: Data) throws {
+        ThemesManager.shared.themeModel = try ThemeModel.generateModel(jsonData)
     }
 }
 
