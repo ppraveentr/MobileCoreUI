@@ -54,4 +54,6 @@ Configure the SwiftUI Text style as below:
       .theme(.foreground(color: .init(.blue, dark: .red)))
 }
 ```
-![MobileCoreUI-Color-Font](https://user-images.githubusercontent.com/15041699/197370257-62a28cfb-4923-4451-a239-8f0cbe2ccc96.gif)
+
+![MobileCoreUI-Color-Font](https://user-images.githubusercontent.com/15041699/197370343-8bd27dcc-9f04-4b99-afdd-64b0030c08b9.gif)
+
